@@ -13,7 +13,7 @@
         <Label  Content="Gender" HorizontalAlignment="Left" Margin="46,184,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.155,-3.538"/>
         <Label  Content="Address" HorizontalAlignment="Left" Margin="46,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.155,-3.538"/>
         <TextBox  x:Name="Name" HorizontalAlignment="Left" Height="23" Margin="152,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox  x:Name="Id" HorizontalAlignment="Left" Height="23" Margin="152,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox  x:Name="Id" IsReadOnly="True" HorizontalAlignment="Left" Height="23" Margin="152,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Age" HorizontalAlignment="Left" Height="23" Margin="152,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Gender" HorizontalAlignment="Left" Height="23" Margin="152,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Address" HorizontalAlignment="Left" Height="23" Margin="152,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

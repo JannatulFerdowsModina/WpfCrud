@@ -34,22 +34,62 @@ namespace WpfCrud.Views
             Gender.Text = e.Gender;
             Id.Text = e.Id.ToString();
         }
-
+        public bool IsValid()
+        {
+            //if (Id.Text == string.Empty)
+            //{
+            //    MessageBox.Show("please Insert id");
+            //    return false;
+            //}
+            if (Name.Text == string.Empty)
+            {
+                MessageBox.Show("please Insert name");
+                return false;
+            }
+            if (Age.Text == string.Empty)
+            {
+                MessageBox.Show("please Insert age");
+                return false;
+            }
+            if (Gender.Text == string.Empty)
+            {
+                MessageBox.Show("please Insert gender");
+                return false;
+            }
+            if (Address.Text == string.Empty)
+            {
+                MessageBox.Show("please Insert address");
+                return false;
+            }
+            //EmployeeEntities context = new EmployeeEntities();
+            //int a = Convert.ToInt32(Id.Text);
+            //EmployeeDetail employeeDetail = (from data in context.EmployeeDetails where data.Id == a select data).FirstOrDefault();
+            //if (employeeDetail != null)
+            //{
+            //    MessageBox.Show("please Insert a unique id");
+            //    return false;
+            //}
+            return true;
+        }
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            EmployeeEntities context = new EmployeeEntities();
-            int a = Convert.ToInt32(Id.Text);
-            EmployeeDetail employeeDetail = (from data in context.EmployeeDetails where data.Id ==a select data).First();
-            employeeDetail.Id = Convert.ToInt32(Id.Text);
-            employeeDetail.Name = Name.Text;
-            employeeDetail.Age = Age.Text;
-            employeeDetail.Gender = Gender.Text;
-            employeeDetail.Address = Address.Text;
-            context.SaveChanges();
+            if(IsValid())
+            {
+                EmployeeEntities context = new EmployeeEntities();
+                int a = Convert.ToInt32(Id.Text);
+                EmployeeDetail employeeDetail = (from data in context.EmployeeDetails where data.Id == a select data).First();
+                employeeDetail.Id = Convert.ToInt32(Id.Text);
+                employeeDetail.Name = Name.Text;
+                employeeDetail.Age = Age.Text;
+                employeeDetail.Gender = Gender.Text;
+                employeeDetail.Address = Address.Text;
+                context.SaveChanges();
 
-            EmployeeList dashboard = new EmployeeList();
-            dashboard.Show();
-            this.Close();
+                EmployeeList dashboard = new EmployeeList();
+                dashboard.Show();
+                this.Close();
+            }
+
         }
     }
 }
