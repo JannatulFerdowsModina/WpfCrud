@@ -42,6 +42,9 @@ namespace WpfCrud.Views
                 employeeDetail.Age = data.Age;
                 employeeDetail.Gender = data.Gender;
                 employeeDetail.Address = data.Address;
+                employeeDetail.DateOfBirth = data.DateOfBirth;
+                employeeDetail.Department = data.Department;
+                employeeDetail.IsActive = data.IsActive;
                 emp.Add(employeeDetail);
             }
             empList.DataContext = emp;

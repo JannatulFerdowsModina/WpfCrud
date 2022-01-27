@@ -12,17 +12,18 @@ namespace WpfCrud.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class EmployeeDetail
+    public partial class Department
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Department()
+        {
+            this.EmployeeDetails = new HashSet<EmployeeDetail>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
-        public Nullable<int> Age { get; set; }
-        public string Gender { get; set; }
-        public string Address { get; set; }
-        public Nullable<System.DateTime> DateOfBirth { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public Nullable<int> DepertmentId { get; set; }
     
-        public virtual Department Department { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeDetail> EmployeeDetails { get; set; }
     }
 }

@@ -26,5 +26,6 @@ namespace WpfCrud.Models
         }
     
         public virtual DbSet<EmployeeDetail> EmployeeDetails { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
     }
 }

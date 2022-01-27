@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using WpfCrud.Models;
+using WpfCrud.ViewModels;
+
 namespace WpfCrud.Views
 {
     /// <summary>
@@ -20,11 +22,22 @@ namespace WpfCrud.Views
     /// </summary>
     public partial class EmployeeDetails : Window , INotifyPropertyChanged
     {
-       // public int Id;
+        // public int Id;
+        private readonly List<string> Departments = new List<string>();
         public EmployeeDetails()
         {
             InitializeComponent();
             this.DataContext = this;
+            EmployeeEntities context = new EmployeeEntities();
+
+            var query = from data in context.Departments
+
+                        select data;
+            foreach(var d in query)
+            {
+                Departments.Add(d.Name.ToString());
+            }
+            Department.ItemsSource = Departments;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -37,21 +50,13 @@ namespace WpfCrud.Views
         }
         public bool IsValid()
         {
-            if(Id.Text==string.Empty)
-            {
-                MessageBox.Show("please Insert id");
-                return false;
-            }
+       
             if (Name.Text == string.Empty)
             {
                 MessageBox.Show("please Insert name");
                 return false;
             }
-            if (Age.Text == string.Empty)
-            {
-                MessageBox.Show("please Insert age");
-                return false;
-            }
+
             if (Gender.Text == string.Empty)
             {
                 MessageBox.Show("please Insert gender");
@@ -62,12 +67,15 @@ namespace WpfCrud.Views
                 MessageBox.Show("please Insert address");
                 return false;
             }
-            EmployeeEntities context = new EmployeeEntities();
-            int a = Convert.ToInt32(Id.Text);
-            EmployeeDetail employeeDetail = (from data in context.EmployeeDetails where data.Id == a select data).FirstOrDefault();
-            if(employeeDetail!=null)
+            if (DateOfBirth.Text == string.Empty)
             {
-                MessageBox.Show("please Insert a unique id");
+                MessageBox.Show("Please insert Date of Birth");
+                return false;
+            }
+
+            if(Department.Text==string.Empty)
+            {
+                MessageBox.Show("Please insert Department");
                 return false;
             }
             return true;
@@ -79,11 +87,17 @@ namespace WpfCrud.Views
             {
                 EmployeeEntities context = new EmployeeEntities();
                 EmployeeDetail employeeDetail = new EmployeeDetail();
-                employeeDetail.Id = Convert.ToInt32(Id.Text);
+                EmployeeDetailsViewModel age = new EmployeeDetailsViewModel();
+                string dept = Department.Text.ToString();
+                var department = (from data in context.Departments where data.Name ==dept select data).First();
+                //employeeDetail.Id = Convert.ToInt32(Id.Text);
                 employeeDetail.Name = Name.Text;
-                employeeDetail.Age = Age.Text;
                 employeeDetail.Gender = Gender.Text;
                 employeeDetail.Address = Address.Text;
+                employeeDetail.Age = age.AgeCalculate(Convert.ToDateTime(DateOfBirth.Text));
+                employeeDetail.DateOfBirth = Convert.ToDateTime(DateOfBirth.Text);
+                employeeDetail.IsActive =Convert.ToBoolean(IsActive.IsChecked);
+                employeeDetail.DepertmentId =department.Id;
                 context.EmployeeDetails.Add(employeeDetail);
                 context.SaveChanges();
 

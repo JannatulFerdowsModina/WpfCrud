@@ -7,19 +7,26 @@
         mc:Ignorable="d"
         Title="EmployeeDetails" Height="450" Width="800">
     <Grid>
-        
-        <Label Content="Id" HorizontalAlignment="Left" Margin="46,65,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.325,-3.325" Width="106"/>
-        <Label  Content="Name" HorizontalAlignment="Left" Margin="46,96,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.325,-3.325" Width="106"/>
-        <Label  Content="Age" HorizontalAlignment="Left" Margin="46,142,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.155,-3.538"/>
-        <Label  Content="Gender" HorizontalAlignment="Left" Margin="46,184,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.155,-3.538"/>
-        <Label  Content="Address" HorizontalAlignment="Left" Margin="46,220,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.155,-3.538"/>
-        <TextBox x:Name="Name" HorizontalAlignment="Left" Height="23" Margin="152,100,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Id" HorizontalAlignment="Left" Height="23" Margin="152,65,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Age" HorizontalAlignment="Left" Height="23" Margin="152,146,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Gender" HorizontalAlignment="Left" Height="23" Margin="152,184,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="Address" HorizontalAlignment="Left" Height="23" Margin="152,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <Button Content="Add" HorizontalAlignment="Left" Margin="152,280,0,0" VerticalAlignment="Top" Width="75" Click="AddButton_Click"/>
-      <!--<Button Content="List" HorizontalAlignment="Left" Margin="287,280,0,0" VerticalAlignment="Top" Width="75" Click="ListButton_Click"/>-->
+        <Label  Content="Name" HorizontalAlignment="Left" Margin="76,27,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.325,-3.325" Width="59"/>
+        <!--<Label  Content="Age" HorizontalAlignment="Left" Margin="76,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.155,-3.538"/>-->
+        <Label  Content="Gender" HorizontalAlignment="Left" Margin="76,72,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.155,-3.538" Width="59"/>
+        <Label  Content="Address" HorizontalAlignment="Left" Margin="76,112,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.155,-3.538"/>
+        <TextBox x:Name="Name" HorizontalAlignment="Left" Height="23" Margin="152,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <!--<TextBox x:Name="Age" HorizontalAlignment="Left" Height="23" Margin="152,84,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>-->
+        <TextBox x:Name="Address" HorizontalAlignment="Left" Height="23" Margin="152,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Content="Add" HorizontalAlignment="Left" Margin="152,294,0,0" VerticalAlignment="Top" Width="75" Click="AddButton_Click"/>
+        <CheckBox x:Name="IsActive" Content="IsActive" HorizontalAlignment="Left" Margin="152,251,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="Gender" HorizontalAlignment="Left" Margin="152,69,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Content">
+            <ComboBoxItem Content="Male"></ComboBoxItem>
+            <ComboBoxItem Content="Female"></ComboBoxItem>
+        </ComboBox>
+        <ComboBox x:Name="Department" HorizontalAlignment="Left" Margin="152,208,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Content" SelectedValue=""/>
+        <Label  Content="Department" HorizontalAlignment="Left" Margin="55,208,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.155,-3.538"/>
+        <DatePicker x:Name="DateOfBirth" HorizontalAlignment="Left" Margin="152,160,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label  Content="Date of Birth" HorizontalAlignment="Left" Margin="58,166,0,0" VerticalAlignment="Top" RenderTransformOrigin="-12.155,-3.538"/>
+        <!--<Button Content="List" HorizontalAlignment="Left" Margin="287,280,0,0" VerticalAlignment="Top" Width="75" Click="ListButton_Click"/>-->
 
     </Grid>
 </Window>
+
+    
