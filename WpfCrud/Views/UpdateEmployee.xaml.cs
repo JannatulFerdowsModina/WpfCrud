@@ -21,12 +21,12 @@ namespace WpfCrud.Views
     /// </summary>
     public partial class UpdateEmployee : Window
     {
-        private readonly List<string> Departments = new List<string>();
-        public UpdateEmployee(int a)
+        //private readonly List<string> Departments = new List<string>();
+        public UpdateEmployee(int a,string b)
         {
             InitializeComponent();
             this.DataContext = this;
-
+            //MessageBox.Show(b);
             EmployeeEntities context = new EmployeeEntities();
             EmployeeDetail e = (from data in context.EmployeeDetails where data.Id == a select data).First();
             Id.Text = e.Id.ToString();
@@ -35,19 +35,20 @@ namespace WpfCrud.Views
             Gender.Text = e.Gender;
            
             DateOfBirth.Text = e.DateOfBirth.ToString();
-            var query = from data in context.Departments
+            var query = (from data in context.Departments
 
-                        select data;
-            foreach (var d in query)
-            {
-                Departments.Add(d.Name.ToString());
-            }
-            Department.ItemsSource = Departments;
-            var department = (from data in context.Departments where data.Id == e.DepertmentId select data).First();
-
-            Department.Text = department.Name;
+                         select new { Name = data.Name, Id = data.Id }).ToList();
+            //foreach (var d in query)
+            //{
+            //    Departments.Add(d.Name.ToString());
+            //}
+            //Department.ItemsSource = Departments;
+            // var department = (from data in context.Departments where data.Id == e.DepertmentId select data).First();
+            Department.ItemsSource = query;
+            Department.DisplayMemberPath = "Name";
+            Department.SelectedValuePath = "Id";
+            Department.Text=b;
             IsActive.IsChecked = e.IsActive; 
-
         }
         public bool IsValid()
         {
@@ -88,7 +89,6 @@ namespace WpfCrud.Views
                 EmployeeEntities context = new EmployeeEntities();
                 int a = Convert.ToInt32(Id.Text);
                 EmployeeDetail employeeDetail = (from data in context.EmployeeDetails where data.Id == a select data).First();
-              //  employeeDetail.Id = Convert.ToInt32(Id.Text);
                 employeeDetail.Name = Name.Text;
                 EmployeeDetailsViewModel age = new EmployeeDetailsViewModel();
                 employeeDetail.Age = age.AgeCalculate(Convert.ToDateTime(DateOfBirth.Text));
@@ -96,9 +96,7 @@ namespace WpfCrud.Views
                 employeeDetail.Address = Address.Text;
                 employeeDetail.DateOfBirth = Convert.ToDateTime(DateOfBirth.Text);
                 employeeDetail.IsActive = Convert.ToBoolean(IsActive.IsChecked);
-                string dept = Department.Text.ToString();
-                var department = (from data in context.Departments where data.Name == dept select data).First();
-                employeeDetail.DepertmentId = department.Id;
+                employeeDetail.DepertmentId = Convert.ToInt32(Department.SelectedValue);
                 context.SaveChanges();
 
                 EmployeeList dashboard = new EmployeeList();

@@ -30,14 +30,17 @@ namespace WpfCrud.Views
             this.DataContext = this;
             EmployeeEntities context = new EmployeeEntities();
 
-            var query = from data in context.Departments
+            var query = (from data in context.Departments
 
-                        select data;
-            foreach(var d in query)
-            {
-                Departments.Add(d.Name.ToString());
-            }
-            Department.ItemsSource = Departments;
+                         select new { Name = data.Name, Id = data.Id }).ToList();
+            //foreach(var d in query)
+            //{
+            //    Departments.Add(d.Name.ToString());
+            //}
+            Department.ItemsSource = query;
+            Department.DisplayMemberPath = "Name";
+            Department.SelectedValuePath = "Id"; ;
+            //Department.Uid=Departments.Find(n)
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -82,22 +85,22 @@ namespace WpfCrud.Views
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            //MessageBox.Show(Name.Text);
+            //MessageBox.Show(Department.SelectedItem.ToString());
             if(IsValid())
             {
                 EmployeeEntities context = new EmployeeEntities();
                 EmployeeDetail employeeDetail = new EmployeeDetail();
                 EmployeeDetailsViewModel age = new EmployeeDetailsViewModel();
-                string dept = Department.Text.ToString();
-                var department = (from data in context.Departments where data.Name ==dept select data).First();
-                //employeeDetail.Id = Convert.ToInt32(Id.Text);
+               // string dept = Department.Text.ToString();
+               // var department = (from data in context.Departments where data.Name ==dept select data).First();
                 employeeDetail.Name = Name.Text;
                 employeeDetail.Gender = Gender.Text;
                 employeeDetail.Address = Address.Text;
                 employeeDetail.Age = age.AgeCalculate(Convert.ToDateTime(DateOfBirth.Text));
                 employeeDetail.DateOfBirth = Convert.ToDateTime(DateOfBirth.Text);
                 employeeDetail.IsActive =Convert.ToBoolean(IsActive.IsChecked);
-                employeeDetail.DepertmentId =department.Id;
+                // employeeDetail.DepertmentId =department.Id;
+                employeeDetail.DepertmentId=Convert.ToInt32(Department.SelectedValue);
                 context.EmployeeDetails.Add(employeeDetail);
                 context.SaveChanges();
 

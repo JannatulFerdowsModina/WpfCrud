@@ -69,7 +69,9 @@ namespace WpfCrud.Views
         
             Button btn = (Button)sender;
             int a =Convert.ToInt32(btn.Uid);
-            UpdateEmployee updateEmployee = new UpdateEmployee(a);
+           var b = btn.Tag.ToString();
+            //MessageBox.Show(btn.Tag..ToString());
+            UpdateEmployee updateEmployee = new UpdateEmployee(a,b);
             updateEmployee.Show();
             this.Close();
             //EmployeeEntities context = new EmployeeEntities();

@@ -25,12 +25,13 @@
                 <DataGridTextColumn x:Name="eAge" Header = "Age" Binding = "{Binding Age}" />
                 <DataGridTextColumn x:Name="eGender" Header = "Gender" Binding = "{Binding Gender}" />
                 <DataGridTextColumn x:Name="eAddress" Header = "Address" Binding = "{Binding Address}" />
-                <DataGridTextColumn x:Name="Department" Header = "Department" Binding = "{Binding Department.Name}" />
+                <DataGridTextColumn x:Name="eDepartment" Header = "Department" Binding = "{Binding Department.Name}" />
                 <DataGridCheckBoxColumn Header="IsActive" Binding = "{Binding IsActive}"></DataGridCheckBoxColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Click="UpdateButton_Click" Uid="{Binding Id}">Update</Button>
+                           
+                            <Button Click="UpdateButton_Click" Uid="{Binding Id}" Tag="{Binding Department.Name}">Update</Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
